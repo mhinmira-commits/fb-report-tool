@@ -24,6 +24,6 @@ jobs:
         playwright install-deps chromium
         playwright install chromium
 
-    - name: Run the reporting bot
+- name: Run the reporting bot
       run: |
-        python bot.py
+        python bot.py || true
