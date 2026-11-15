@@ -1,1 +1,28 @@
+name: FB Auto Report Bot
 
+on:
+  schedule:
+    - cron: '0 */6 * * *' # Prottek 6 ghonta por por automatic run korbe (tumi nijer moto time change korte parbe)
+  workflow_dispatch: # GitHub website theke manually "Run workflow" korar button thakbe
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies & Playwright browsers
+      run: |
+        pip install playwright
+        playwright install chromium
+
+    - name: Run the reporting bot
+      run: |
+        python bot.py
