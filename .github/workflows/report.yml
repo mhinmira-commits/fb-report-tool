@@ -24,6 +24,7 @@ jobs:
         playwright install-deps chromium
         playwright install chromium
 
-    - name: Run the reporting bot
+    - name: Run bot with virtual display
       run: |
-        python bot.py
+        sudo apt-get update && sudo apt-get install -y xvfb
+        xvfb-run --auto-servernum python bot.py
